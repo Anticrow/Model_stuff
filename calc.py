@@ -4,6 +4,14 @@ import pandas as pd
 from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import Perceptron
 import numpy as np
+from flask import Flask
+
+
+app = Flask(__name__)
+
+@app.route('/simple-stream')
+def streamed_response():
+    return Response(stream_with_context(generate()))
 
 count = 0
 price_list = []
@@ -13,6 +21,8 @@ date_list = []
 ##using api to import price movement every 5 minutes
 #воткнуть исторические данные по ценам и другие данные в модель сюда
 #print (price_df)
+
+
 
 import time
 starttime=time.time()
@@ -52,3 +62,9 @@ while True:
       print ("MLP accuracy is:", model.score(x,y), "% while Perceptron accuracy is:", model_1.score(x,y), "% after", count, "ticks")
       
   time.sleep(60.0 - ((time.time() - starttime) % 60.0))
+  
+def generate():
+  yield "MLP accuracy is:", model.score(x,y), "% while Perceptron accuracy is:", model_1.score(x,y), "% after", count, "ticks"
+    
+if __name__ == "__main__":
+  app.run(debug=True)
