@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import Perceptron
 import numpy as np
-from flask import Flask
+import flask
 
 
 app = Flask(__name__)
