@@ -1,9 +1,4 @@
-[packages]
-requests = "*"
-json = "*"
-pandas = "*"
-numpy = "*"
-sklearn = "*"
-
-[requires]
-python_version = "3.6"
+numpy==1.12.1
+requests==2.14.2
+scikit-learn==0.18.1
+pandas==0.20.1
